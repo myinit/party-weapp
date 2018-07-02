@@ -1,0 +1,25 @@
+<!--pages/list/list.wxml-->
+<scroll-view class='party-list-view'>
+  <block wx:for="{{list}}" wx:for-item="party" wx:key="index">
+    <view class='party-card'>
+      <view class='thumb'>
+        <image src='{{party.background}}'></image>
+        <view class='tip'>
+          <text class='party-name ellipsis'>{{party.partyName}}</text>
+          <text class='left-time ellipsis'>剩{{party.remainTime}}</text>
+        </view>
+      </view>
+      <view class='bottom-label flex-row flex-h-c'>
+        <view>
+          <zan-icon type="shop-collect" class='shop-icon'></zan-icon>
+          <text>{{party.shopName}}</text>
+        </view>
+        <view>
+          <text>{{party.addr}}</text>
+        </view>
+      </view>
+      <!-- <button session-from="{{party.background}}" type='primary' open-type='contact' class='send-message-btn'>发送消息</button> -->
+      <button bindtap='scanCode' type='primary'  class='send-message-btn'>发送消息</button>
+    </view>
+  </block>
+</scroll-view>

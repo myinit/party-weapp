@@ -1,0 +1,90 @@
+<!--index.wxml-->
+<scroll-view class='scroll-view'>
+  <view class='swiper-view'>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper-container">
+      <block wx:for="{{partyBannerList}}" wx:key="{{index}}">
+        <swiper-item class="swiper-item">
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='search-bar flex-row flex-v-h-c'>
+      <zan-icon type="search" class='search-icon' />
+      <input class='search-input' placeholder='搜索想要的活动名称' placeholder-class="input-placeholder-class"></input>
+    </view>
+  </view>
+  <view class='section theme-party'>
+    <view class='line-title flex-row flex-v-h-c'>
+      <view class='line'></view>
+      <text class='title'>主题街</text>
+      <view class='line'></view>
+    </view>
+    <view class='title-tip'>品牌活动，优惠多多</view>
+    <view class='theme-list flex-row flex-h-c'>
+      <block wx:for="{{themeList}}" wx:key="{{index}}">
+        <view class='theme-item flex-col flex-v-h-c'>
+          <image class='theme-item-img' src='{{item.img}}'></image>
+          <text class='theme-item-name'>{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+    <view class='theme-grid flex-row bdr-t bdr-b'>
+      <view class='left bdr-r flex-col'>
+        <view class='card flex-col'>
+          <view class='dsc flex-col'>
+            <text class='coupon-text'>优惠推广</text>
+            <text class='theme-grid-samll-tip'>爆品</text>
+          </view>
+          <image src='http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'></image>
+        </view>
+      </view>
+      <view class='right flex-col'>
+        <view class='card flex-row flex-v-c bdr-b'>
+          <view class='dsc flex-col'>
+            <text class='star-suggest-text'>大咖推荐</text>
+            <text class='theme-grid-samll-tip'>低价高佣好货</text>
+          </view>
+          <image src='http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'></image>
+        </view>
+        <view class='card flex-row flex-v-c'>
+          <view class='dsc flex-col'>
+            <text class='ad-conent-text'>内容推广专区</text>
+            <text class='theme-grid-samll-tip'>做一个有兴趣的推广</text>
+          </view>
+          <image src='http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='section hot-party'>
+    <view class='line-title flex-row flex-v-h-c'>
+      <view class='line'></view>
+      <text class='title'>热门活动</text>
+      <view class='line'></view>
+    </view>
+    <view class='title-tip'>就近热门，无法自拔</view>
+    <view class='hot-party-list'>
+      <block wx:for="{{hotPartyList}}" wx:for-item="party" wx:key="index">
+        <view class='party-card'>
+          <view class='thumb'>
+            <image src='{{party.background}}'></image>
+            <view class='tip'>
+              <text class='party-name ellipsis'>{{party.partyName}}</text>
+              <text class='left-time ellipsis'>剩{{party.remainTime}}</text>
+            </view>
+          </view>
+          <view class='bottom-label flex-row flex-h-c'>
+            <view>
+              <zan-icon type="shop-collect" class='shop-icon'></zan-icon>
+              <text>{{party.shopName}}</text>
+            </view>
+            <view>
+              <text>{{party.addr}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <zan-dialog id="have-url-dialog"></zan-dialog>
+</scroll-view>

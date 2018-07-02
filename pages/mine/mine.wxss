@@ -1,0 +1,139 @@
+/**mine.wxss**/
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blur {
+  position: relative;
+  width: 100vw;
+  height: 400rpx;
+  overflow: hidden;
+}
+
+.blur-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('http://img.zcool.cn/community/01989f58ad6b9ba801219c779368cd.jpg');
+  background-size: 100% 100%;
+  opacity: 0.8;
+  filter: blur(15rpx);
+  z-index: -1;
+}
+
+.avtar-box {
+  width: 30vw;
+  height: 30vw;
+  border-radius: 50%;
+  border: 2rpx solid rgba(232, 232, 232, 0.3);
+  padding: 30rpx;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.avtar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.user-nick-name {
+  margin-top: 20rpx;
+  font-size: 36rpx;
+  color: #282828;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.grid {
+  flex: 1;
+  width: 100vw;
+  background-color: #eaeaea;
+}
+
+.grid-row {
+  flex: 1;
+  width: 100%;
+}
+
+.grid-item {
+  flex: 1;
+  height: 100%;
+  background-color: #fff;
+  font-size: 32rpx;
+}
+
+.grid-item>.text {
+  margin-top: 20rpx;
+}
+
+.icon-box {
+  width: 13vw;
+  height: 13vw;
+  text-align: center;
+  line-height: 13vw;
+  font-size: 56rpx;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.grid-item>.message {
+  background-color: #01d5c2;
+}
+
+.grid-item>.people {
+  background-color: #4b98e8;
+}
+
+.grid-item>.money {
+  background-color: #52c8ee;
+}
+
+.grid-item>.lottery {
+  background-color: #8fd849;
+}
+
+.grid-item>.card {
+  background-color: #fed038;
+}
+
+.grid-item>.vip {
+  background-color: #fea023;
+}
+
+.grid-item>.collect {
+  background-color: #c4d084;
+}
+
+.grid-item>.commit {
+  background-color: #f8798f;
+}
+
+.grid-item>.aboutus {
+  background-color: #bed44a;
+}

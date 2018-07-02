@@ -1,0 +1,58 @@
+.party-card {
+  position: relative;
+  margin: 0 auto 20rpx auto;
+  width: 95vw;
+  color: #333;
+  /* border-radius: 3rpx; */
+  box-shadow: 0 5rpx 10rpx #999;
+}
+
+.party-card>.bottom-label {
+  padding: 0 10rpx;
+  justify-content: space-between;
+  height: 60rpx;
+  font-size: 26rpx;
+  color: #333333;
+}
+.shop-icon {
+  margin-right: 15rpx;
+}
+.thumb {
+  position: relative;
+  height: 260rpx;
+}
+
+.thumb>image {
+  height: 100%;
+  width: 100%;
+}
+
+.thumb>.tip {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  height: 60rpx;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding-left: 10rpx;
+  font-size: 32rpx;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+.thumb>.tip>.party-name{
+  width: 260rpx;
+}
+.thumb>.tip>.left-time{
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10rpx);
+  padding-left: 20rpx;
+  text-align: center;
+  width: 230rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-top-left-radius:20rpx;
+  border-bottom-left-radius: 20rpx;
+}
