@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import '/assets/common/iconfont.wxss';
 .flex-row{
   display: flex;
   flex-direction: row;

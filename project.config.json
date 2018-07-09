@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.94",
-	"appid": "",
-	"projectname": "party",
+	"appid": "wx0e7719b0d733672d",
+	"projectname": "party-weapp",
 	"condition": {
 		"search": {
 			"current": -1,

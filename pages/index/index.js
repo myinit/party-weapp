@@ -1,4 +1,7 @@
 import { saveUrlToClip, haveUrlInClip } from '../../utils/urlHandle.js'
+import {
+  isUrl
+} from '../../utils/util.js'
 //index.js
 //获取应用实例
 const app = getApp()
@@ -31,48 +34,47 @@ Page({
     autoplay: true,
     interval: 3000,
     duration: 1000,
-    themeList: [{
-      name: '主题家电',
-      img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg',
-    }, {
-      name: '主题家电',
-      img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-    }, {
-      name: '主题家电',
-      img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    }, {
-      name: '主题家电',
-      img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-    }, {
-      name: '主题家电',
-      img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg',
-    }],
-  },
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  touchstart: function (e) {
-    this.setData({
-      touchstartY: e.touches[0].pageY
-    })
-    console.log(e.touches[0].pageY)
-  },
-  touchmove: function (e) {
-    let satrtY = this.data.touchstartY
-    let endY = e.touches[0].pageY
-    if (endY > satrtY) {
-      this.setData({
-        touchmoveY: endY - satrtY
-      })
-    }
-  },
-  touchend: function (e) {
-    console.log(e)
+    navList: [
+      { name: '开始', iconName: 'scan', to: '/pages/edit/index', handleClick:'scan' },
+      { name: '活动', iconName: 'party', to: '/pages/list/list', handleClick: 'navigateTo' },
+      { name: '历史', iconName: 'history', to: '/pages/list/list', handleClick: 'navigateTo' },
+      { name: '我的', iconName: 'people', to: '/pages/mine/mine', handleClick: 'navigateTo' },
+      { name: '反馈', iconName: 'contact', to: '/pages/edit/index', handleClick: 'navigateTo' },
+      { name: '帮助', iconName: 'help', to: '/pages/edit/index', handleClick: 'navigateTo' }
+    ]
   },
   onLoad: function () {
-    haveUrlInClip()
+    // haveUrlInClip()
+  },
+  // todo 入参序列化
+  navigateTo: function (e){
+    let data = e.currentTarget.dataset
+    wx.navigateTo({
+      url: data.tourl
+    })
+  },
+  scan: function (){
+    wx.scanCode({
+      success: (res) => {
+        console.log(res)
+        if (isUrl(res.result)) {
+          let party = {
+            url: res.result
+          }
+          wx.navigateTo({
+            url: '/pages/edit/index?party=' + JSON.stringify(party),
+          })
+        }else{
+          wx.showToast({
+            title: '扫描结果不是URL请重新扫描',
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '扫描图片不是二维码图片！',
+        })
+      }
+    })
   }
 })

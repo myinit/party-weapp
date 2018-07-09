@@ -1,6 +1,13 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function() {
+    //获取系统信息
+    try {
+      var res = wx.getSystemInfoSync()
+      this.globalData.statusBarHeight = res.statusBarHeight
+    } catch (e) {
+      // Do something when catch error
+    }
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -21,7 +28,7 @@ App({
     })
     // 获取用户信息
     wx.getSetting({
-      fail:res => {
+      fail: res => {
         console.log(res)
       },
       success: res => {
@@ -45,6 +52,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    statusBarHeight: 0
   }
 })

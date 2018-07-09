@@ -1,9 +1,12 @@
 import Dialog from '../modules/zanui/dialog/dialog.js'
-import { isUrl, ellipsisString } from '/util.js'
+import {
+  isUrl,
+  ellipsisString
+} from '/util.js'
 const saveUrlToClip = url => {
   wx.setClipboardData({
     data: url,
-    success: function (res) {
+    success: function(res) {
       wx.showToast({
         title: '已复制URL到剪切板，可到浏览器打开',
         icon: 'none',
@@ -15,7 +18,7 @@ const saveUrlToClip = url => {
 //需要在页面配置id  为have-url-dialog
 const haveUrlInClip = () => {
   wx.getClipboardData({
-    success: function (res) {
+    success: function(res) {
       if (isUrl(res.data)) {
         Dialog({
           title: '',
@@ -32,14 +35,20 @@ const haveUrlInClip = () => {
             text: '取消',
             type: 'cancel'
           }]
-        }).then((res) => {
-          let handleButtonType = res.type
+        }).then((dialogres) => {
+          let handleButtonType = dialogres.type
+          let party = {
+            url: res.data
+          }
           if (handleButtonType === 'confirm') {
-            wx.showToast({
-              title: '保存成功',
-              icon: 'success',
-              duration: 2000
+            wx.navigateTo({
+              url: '/pages/edit/index?party=' + JSON.stringify(party),
             })
+            // wx.showToast({
+            //   title: '保存成功',
+            //   icon: 'success',
+            //   duration: 2000
+            // })
           }
           if (handleButtonType === 'cancel') {
             wx.showToast({

@@ -1,0 +1,24 @@
+.edit-body {
+}
+
+.save-btn {
+  width: 120rpx;
+}
+
+.top-header-container {
+  text-align: center;
+  line-height: 100rpx;
+  height: 100rpx;
+  background-color: #fff;
+}
+
+.top-header-container>.left {
+  float: left;
+}
+
+.top-header-container>.left::before {
+  font-family: 'iconfont';
+  color: #333;
+  content: '\e697';
+  font-size: 52rpx;
+}
