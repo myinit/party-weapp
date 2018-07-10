@@ -1,4 +1,6 @@
 //app.js
+
+var Http = require('service/http.js');
 App({
   onLaunch: function() {
     //获取系统信息
@@ -8,10 +10,6 @@ App({
     } catch (e) {
       // Do something when catch error
     }
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
 
     // 登录
     wx.login({
@@ -51,6 +49,7 @@ App({
       }
     })
   },
+  Http:Http,
   globalData: {
     userInfo: null,
     statusBarHeight: 0
