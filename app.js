@@ -1,8 +1,27 @@
 //app.js
 
-var Http = require('service/http.js');
+const Http = require('service/http.js');
+const Util = require('utils/util.js');//引入util.js
+const Constants = require('utils/constants.js')//引入constants.js
+const Check = Util.Check;//验证相关方法
+const Count = Util.Count;//计算相关方法
+const Format = Util.Format;//format相关方法
+const Storage = Util.Storage;//数据缓存
+import regeneratorRuntime from 'utils/regeneratorRuntime.js'
 App({
-  onLaunch: function() {
+  onLaunch: function () {
+    this.getSystemInfo();
+    // this.getUserInfo();
+  },
+  //引入
+  Constants: Constants,
+  Http: Http,
+  Check: Check,
+  Count: Count,
+  Format: Format,
+  Storage: Storage,
+  //公用方法
+  getSystemInfo: function () {
     //获取系统信息
     try {
       var res = wx.getSystemInfoSync()
@@ -10,46 +29,32 @@ App({
     } catch (e) {
       // Do something when catch error
     }
-
-    // 登录
-    wx.login({
-      success: res => {
-        wx.request({
-          url: 'https://party.aitboy.cn/user-login',
-          data: {
-            code: res.code
+  },
+  //公用方法
+  async getUserInfo() {
+    return new Promise((resolve, reject) => {
+      var that = this;
+      if (!Check.isUndeFinedOrNullOrEmpty(this.globalData.userInfo)) {
+        resolve(this.globalData.userInfo);
+      } else {
+        wx.getUserInfo({
+          withCredentials: false,
+          success: function (res) {
+            that.globalData.userInfo = res.userInfo;
+            resolve(that.globalData.userInfo);
+          },
+          fail: function (res) {
+            console.log(res)
+            reject(res);
+            wx.showToast({
+              title: '请重新授权！',
+              icon: 'none'
+            })
           }
         })
-        console.log(res);
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      fail: res => {
-        console.log(res)
-      },
-      success: res => {
-        console.log(res);
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-              console.log(res)
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
       }
     })
   },
-  Http:Http,
   globalData: {
     userInfo: null,
     statusBarHeight: 0

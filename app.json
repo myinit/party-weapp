@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/mine/mine",
     "pages/index/index",
     "pages/edit/index",
     "pages/list/list",
-    "pages/mine/mine",
     "pages/scan/findurl",
     "pages/scan/scanres"
   ],

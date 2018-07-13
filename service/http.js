@@ -1,7 +1,7 @@
 // 请求
 
 var app = getApp();
-var Constants = require('../utils/constants.js')//引入constants.js
+import Constants from '../utils/constants.js'
 
 //本地测试域名
 var root = 'http://localhost:7001/';
@@ -27,7 +27,7 @@ function request(config, noLogin) {
   wx.request({
     method: config.type || 'POST',
     url: root + config.url,
-    data: config.data,
+    data: config.data || {},
     header: header,
     success: (res) => {
       var info = res.data || {}
@@ -47,9 +47,11 @@ function request(config, noLogin) {
         if (typeof fail === "function") {
           fail(info);
         } else {
+          console.log(info);
+          console.log(Constants);
           wx.showModal({
             title: '提示',
-            content: info.message || Constants.serviceErrorTip,
+            content: info || Constants.serviceErrorTip,
             showCancel: false
           })
         }
@@ -82,7 +84,7 @@ function login(cb) {
 
         request({
           type: 'POST',
-          url: 'login',
+          url: 'user-login',
           data: params,
           success: (res1) => {
             console.log(res1)

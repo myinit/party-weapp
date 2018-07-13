@@ -10,21 +10,21 @@
     <open-data type="userNickName" class='user-nick-name'></open-data>
   </view>
   <view class='grid flex-col flex-v-h-c'>
-    <view class='grid-row flex-row flex-v-h-c bdr-b'>
+    <view class='grid-row flex-row flex-v-c bdr-b'>
       <view class='grid-item flex-col flex-v-h-c bdr-r'>
         <zan-icon type="chat" class='icon-box message'></zan-icon>
-        <text class='text'>我的消息</text>
-      </view>
-      <view class='grid-item flex-col flex-v-h-c bdr-r'>
-        <zan-icon type="clock" class='icon-box people'></zan-icon>
         <text class='text'>最近浏览</text>
       </view>
+      <button class='grid-item flex-col flex-v-h-c bdr-r open-type-btn' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+        <zan-icon type="clock" class='icon-box people'></zan-icon>
+        <text class='text'>我要授权</text>
+      </button>
       <view class='grid-item flex-col flex-v-h-c'>
         <zan-icon type="like-o" class='icon-box money'></zan-icon>
         <text class='text'>我的收藏</text>
       </view>
     </view>
-    <view class='grid-row flex-row flex-v-h-c bdr-b'>
+    <!-- <view class='grid-row flex-row flex-v-h-c bdr-b'>
       <view class='grid-item flex-col flex-v-h-c bdr-r'>
         <zan-icon type="gift" class='icon-box lottery'></zan-icon>
         <text class='text'>抽奖活动</text>
@@ -35,10 +35,10 @@
       </view>
       <view class='grid-item flex-col flex-v-h-c'>
         <zan-icon type="member-day-privilege" class='icon-box vip'></zan-icon>
-        <text class='text'>我的会员</text>
+        <text class='text'>我要授权</text>
       </view>
-    </view>
-    <view class='grid-row flex-row flex-v-h-c'>
+    </view> -->
+    <!-- <view class='grid-row flex-row flex-v-h-c'>
       <view class='grid-item flex-col flex-v-h-c bdr-r'>
         <zan-icon type="setting" class='icon-box collect'></zan-icon>
         <text class='text'>设置</text>
@@ -51,6 +51,6 @@
         <zan-icon type="records" class='icon-box aboutus'></zan-icon>
         <text class='text'>意见反馈</text>
       </view>
-    </view>
+    </view> -->
   </view>
 </view>
