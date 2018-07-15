@@ -1,0 +1,258 @@
+/* component/bottom-nav/bottomNav.wxss */
+
+
+.bar {
+    display: block;
+    width: 40rpx;
+    height: 5rpx;
+    margin: 5rpx auto;
+    background-color: #fff;
+    border-radius: 2rpx;
+    transition: all .4s linear .1s;
+    -webkit-transition: all .4s linear .1s;
+    -moz-transition: all .4s linear .1s;
+    -o-transition: all .4s linear .1s;
+    -ms-transition: all .4s linear .1s
+}
+
+.bar:first-child {
+    margin-top: 27rpx
+}
+
+.wrap {
+    position: absolute;
+    top: 20rpx;
+    left: 20rpx;
+    margin: auto;
+    width: 150rpx;
+    height: 100rpx;
+    filter: url(../index.html/#filt);
+    -webkit-filter: url(#filt)
+}
+
+.wrap .blob {
+    display: block;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    position: absolute;
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    z-index: 10;
+    background-color: #f44336;
+    box-shadow: 0 0 10rpx 1rpx rgba(255,255,255,.3) inset;
+    -webkit-box-shadow: 0 0 10rpx 1rpx rgba(255,255,255,.3) inset;
+    -moz-box-shadow: 0 0 10rpx 1rpx rgba(255,255,255,.3) inset;
+    -o-box-shadow: 0 0 10rpx 1rpx rgba(255,255,255,.3) inset;
+    -ms-box-shadow: 0 0 10rpx 1rpx rgba(255,255,255,.3) inset
+}
+
+.wrap .blob[for=checking] {
+    z-index: 30;
+    font-size: 60rpx;
+    text-align: center;
+    color: #fff;
+    transition: transform .5s ease-in-out .2s;
+    -webkit-transition: -webkit-transform .5s ease-in-out .2s;
+    -moz-transition: transform .5s ease-in-out .2s;
+    -o-transition: transform .5s ease-in-out .2s;
+    -ms-transition: transform .5s ease-in-out .2s
+}
+
+.wrap .blob:not([for=checking]) {
+    width: 50rpx;
+    height: 50rpx;
+    top: 15rpx;
+    left: 15rpx;
+    font-size: 30rpx;
+    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out
+}
+
+.wrap .blob:not([for=checking]):hover {
+    color: #f44336;
+    animation: harlem .5s linear forwards;
+    -webkit-animation: harlem .5s linear forwards;
+    -moz-animation: harlem .5s linear forwards;
+    -o-animation: harlem .5s linear forwards;
+    -ms-animation: harlem .5s linear forwards
+}
+
+.wrap .blob:nth-child(2) {
+    margin-left: 85rpx;
+    margin-top: 10rpx;
+    background-color: #fff
+}
+
+/* #wrap-checking:checked~.blob:nth-child(3) { */
+.wrap .blob:nth-child(3) {
+    margin-top: 145rpx;
+    margin-left: 65rpx;
+    background-color: #fff
+}
+
+.wrap .blob:nth-child(4) {
+    margin-top: 160rpx;
+    margin-left: 10rpx;
+    background-color: #fff
+}
+
+.wrap .blob:nth-child(5) {
+    margin-top: 85rpx;
+    margin-left: 10rpx;
+    background-color: #fff
+}
+
+.wrap .blob:nth-child(6) {
+    margin-top: 63rpx;
+    margin-left: 63rpx;
+    background-color: #fff
+}
+
+.wrap .blob:nth-child(7) {
+    margin-top: 65rpx;
+    margin-left: 145rpx;
+    background-color: #fff
+}
+
+.wrap .blob:nth-child(8) {
+    margin-top: 112rpx;
+    margin-left: 112rpx;
+    background-color: #fff
+}
+
+.wrap .blob:nth-child(9) {
+    margin-top: 10rpx;
+    margin-left: 160rpx;
+    background-color: #fff
+}
+
+.wrap .blob[for=checking]>.bar:nth-child(1) {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    margin-top: 37rpx
+}
+
+.wrap .blob[for=checking]>.bar:nth-child(2) {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    margin-top: -10rpx
+}
+
+.wrap .blob[for=checking]>.bar:nth-child(3) {
+    opacity: 0
+}
+
+@keyframes harlem {
+    0% {
+        transform: translate(0);
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        -o-transform: translate(0);
+        -ms-transform: translate(0)
+    }
+
+    25% {
+        transform: translate(5rpx,5rpx);
+        -webkit-transform: translate(5rpx,5rpx);
+        -moz-transform: translate(5rpx,5rpx);
+        -o-transform: translate(5rpx,5rpx);
+        -ms-transform: translate(5rpx,5rpx)
+    }
+
+    50% {
+        transform: translate(-5rpx,-5rpx);
+        -webkit-transform: translate(-5rpx,-5rpx);
+        -moz-transform: translate(-5rpx,-5rpx);
+        -o-transform: translate(-5rpx,-5rpx);
+        -ms-transform: translate(-5rpx,-5rpx)
+    }
+
+    75% {
+        transform: translate(2rpx,2rpx);
+        -webkit-transform: translate(2rpx,2rpx);
+        -moz-transform: translate(2rpx,2rpx);
+        -o-transform: translate(2rpx,2rpx);
+        -ms-transform: translate(2rpx,2rpx)
+    }
+
+    100% {
+        transform: translate(0);
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        -o-transform: translate(0);
+        -ms-transform: translate(0)
+    }
+}
+
+@-webkit-keyframes harlem {
+    0% {
+        transform: translate(0);
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        -o-transform: translate(0);
+        -ms-transform: translate(0)
+    }
+
+    25% {
+        transform: translate(5rpx,5rpx);
+        -webkit-transform: translate(5rpx,5rpx);
+        -moz-transform: translate(5rpx,5rpx);
+        -o-transform: translate(5rpx,5rpx);
+        -ms-transform: translate(5rpx,5rpx)
+    }
+
+    50% {
+        transform: translate(-5rpx,-5rpx);
+        -webkit-transform: translate(-5rpx,-5rpx);
+        -moz-transform: translate(-5rpx,-5rpx);
+        -o-transform: translate(-5rpx,-5rpx);
+        -ms-transform: translate(-5rpx,-5rpx)
+    }
+
+    75% {
+        transform: translate(2rpx,2rpx);
+        -webkit-transform: translate(2rpx,2rpx);
+        -moz-transform: translate(2rpx,2rpx);
+        -o-transform: translate(2rpx,2rpx);
+        -ms-transform: translate(2rpx,2rpx)
+    }
+
+    100% {
+        transform: translate(0);
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        -o-transform: translate(0);
+        -ms-transform: translate(0)
+    }
+}
+
+.writingshit {
+    width: 60%;
+    margin: 50rpx auto;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 0 10rpx 2rpx #000;
+    -webkit-box-shadow: 0 0 10rpx 2rpx #000;
+    -moz-box-shadow: 0 0 10rpx 2rpx #000;
+    -o-box-shadow: 0 0 10rpx 2rpx #000;
+    -ms-box-shadow: 0 0 10rpx 2rpx #000
+}
+
+.writingshit .wow {
+    padding: 30rpx
+}
+
+.writingshit .wow p {
+    padding: 0 30rpx
+}

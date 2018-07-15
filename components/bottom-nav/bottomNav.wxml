@@ -1,0 +1,33 @@
+<!-- <view class='bottom-nav'>
+  <view bindtap='handleRouterSwitch' wx:for='{{routers}}' wx:key='{{item.pagePath}}' data-path='{{item.pagePath}}'  class='tabbar-item'>
+     <image class='tabbar-item-icon' src='{{item.active ? item.selectedIconPath : item.iconPath}}'></image> 
+    <view class='tabbar-item-title'>{{item.text}}</view>
+  </view>
+</view> -->
+<view>
+  <view class='wrap'>
+    <input type='checkbox' id='wrap-checking' style='display:none;' />
+    <button class='blob'>&#x2605;</button>
+    <button class='blob'>&#x2709;</button>
+    <button class='blob'>&#x2699;</button>
+    <button class='blob'>&#x2764;</button>
+    <button class='blob'>&#x270C;</button>
+    <button class='blob'>&#x270E;</button>
+    <button class='blob'>&#x266B;</button>
+    <button class='blob'>&#x2706;</button>
+    <label class='blob' for='checking'>
+      <span class='bar'></span>
+      <span class='bar'></span>
+      <span class='bar'></span>
+    </label>
+  </view>
+  <svg>
+    <defs>
+      <filter id="filt">
+        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="filt" />
+        <feBlend in="filt" in="SourceGraphic" result="mix" />
+      </filter>
+    </defs>
+  </svg>
+</view>

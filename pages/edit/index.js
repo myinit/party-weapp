@@ -10,22 +10,33 @@ Page({
       mark: '',
       tag: '',
     },
-    fieldList: [{
-      name: '活动名称',
-      type: 'name'
-    },
-    {
-      name: '活动链接',
-      type: 'url'
-    },
-    {
-      name: '备注',
-      type: 'mark'
-    },
-    {
-      name: '标签',
-      type: 'tag'
-    },
+    fieldList: [
+      {
+        name: '地址',
+        type: 'url',
+        placeholder:'保存的地址信息'
+      },
+      {
+        name: '标题',
+        type: 'name',
+        placeholder: '标题'
+      },
+      {
+        name: '备注',
+        type: 'mark'
+      },
+      {
+        name: '开始',
+        type: 'start'
+      },
+      {
+        name: '结束',
+        type: 'end'
+      },
+      {
+        name: '标签',
+        type: 'tag'
+      },
     ]
   },
   saveParty: function (e) {

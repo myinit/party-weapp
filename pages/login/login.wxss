@@ -1,0 +1,30 @@
+/* pages/login/login.wxss */
+.page-view{
+  width: 100vw;
+  height: 100vh;
+}
+.login-container{
+  width: 80vw;
+  height: 50vh;
+  border-radius: 20rpx;
+  box-shadow: 0 0 40rpx #aaaaaa;
+}
+.login-button{
+  margin-top: 120rpx;
+  width: 416rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background-color: #333643;
+  text-align: center;
+  line-height: 80rpx;
+  color: #ffffff;
+  font-size: 32rpx;
+}
+.avtar-image {
+  margin-top: 80rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+}

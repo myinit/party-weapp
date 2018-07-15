@@ -1,0 +1,10 @@
+<!--pages/login/login.wxml-->
+<view class='page-view flex-col flex-v-h-c'>
+  <view class='login-container flex-col flex-h-c'>
+    <open-data class='avtar-image' type="userAvatarUrl"></open-data>
+    <button class='login-button' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+      登录
+    </button>
+  </view>
+  <bottom-nav></bottom-nav>
+</view>
