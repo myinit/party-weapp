@@ -63,5 +63,15 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  onGotUserInfo: function (e) {
+    wx.redirectTo({
+      url: '/pages/shopPartyList/index',
+    })
+    console.log('onGotUserInfo')
+    console.log(e)
+    console.log('onGotUserInfo')
+  },
+  login: function () {
   }
 })

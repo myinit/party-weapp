@@ -1,24 +1,25 @@
 .edit-body {
 }
-
+.save-btn-view{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 40rpx 0;
+}
 .save-btn {
-  width: 120rpx;
-}
-
-.top-header-container {
+  width: 640rpx;
+  height: 90rpx;
+  background-color: #333643;
   text-align: center;
-  line-height: 100rpx;
-  height: 100rpx;
-  background-color: #fff;
+  line-height: 90rpx;
+  color: #ffffff;
+  border-radius: 45rpx;
+  margin: 0 auto;
+  font-size: 32rpx;
+}
+.save-btn:active{
+  opacity: 0.8;
 }
 
-.top-header-container>.left {
-  float: left;
-}
 
-.top-header-container>.left::before {
-  font-family: 'iconfont';
-  color: #333;
-  content: '\e697';
-  font-size: 52rpx;
-}

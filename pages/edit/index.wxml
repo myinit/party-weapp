@@ -1,8 +1,5 @@
 <scroll-view class='edit-body'>
-  <view class='top-header-container' style='{{"padding-top:"+statusBarHeight+"px;"}}'>
-    <text class='left' bindtap='back'></text>
-    <text class='header-tittle'>编辑活动</text>
-  </view>
+  <top-header title="编辑活动"></top-header>
   <zan-panel>
     <zan-cell-group>
       <block wx:for="{{fieldList}}" wx:key="{{index}}">
@@ -10,7 +7,7 @@
       </block>
     </zan-cell-group>
   </zan-panel>
-  <zan-button-group>
-    <zan-button bind:btnclick="saveParty" type="primary">保存活动</zan-button>
-  </zan-button-group>
+  <view class='save-btn-view'>
+    <view class='save-btn' bindtap='saveParty'>保存活动</view>
+  </view>
 </scroll-view>

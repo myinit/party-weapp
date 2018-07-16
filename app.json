@@ -1,10 +1,12 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/edit/index",
     "pages/mine/mine",
     "pages/index/index",
-    "pages/edit/index",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/shopPartyList/index",
+    "pages/userPartyList/index"
   ],
   "window": {
     "navigationStyle": "custom",

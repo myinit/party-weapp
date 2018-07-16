@@ -6,6 +6,7 @@
     "zan-panel": "/modules/zanui/panel/index",
     "zan-button-group": "/modules/zanui/btn-group/index",
     "zan-cell-group": "/modules/zanui/cell-group/index",
-    "zan-cell": "/modules/zanui/cell/index"
+    "zan-cell": "/modules/zanui/cell/index",
+    "top-header": "/components/top-header/topHeader"
   }
 }

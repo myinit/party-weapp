@@ -64,28 +64,21 @@ App({
       backgroundColor: "#fff",
       list: [
         {
-          "pagePath": "pages/index/index",
-          "text": "首页",
-          "iconPath": "icon/home_nor.png",
-          "selectedIconPath": "icon/home_pre.png"
+          "pagePath": "pages/userPartyList/index",
+          "text": "商户",
+          "iconPath": "/assets/tab-icon/home_fill_light.png",
+          "selectedIconPath": "/assets/tab-icon/home_light.png"
         },
         {
-          "pagePath": "pages/center/index",
-          "text": "发现",
-          "iconPath": "icon/center_nor.png",
-          "selectedIconPath": "icon/center_pre.png"
+          "pagePath": "",
+          "text": "",
+          "special": true
         },
         {
-          "pagePath": "pages/auth/index",
-          "text": "权限",
-          "iconPath": "icon/auth_nor.png",
-          "selectedIconPath": "icon/auth_pre.png"
-        },
-        {
-          "pagePath": "pages/mine/index",
+          "pagePath": "pages/userPartyList/index",
           "text": "我的",
-          "iconPath": "icon/mine_nor.png",
-          "selectedIconPath": "icon/mine_pre.png"
+          "iconPath": "/assets/tab-icon/round_list_light.png",
+          "selectedIconPath": "/assets/tab-icon/round_menu_light.png"
         }
       ]
     }

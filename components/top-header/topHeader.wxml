@@ -1,0 +1,4 @@
+  <view class='top-header-container' style='{{"padding-top:"+statusBarHeight+"px;"}}'>
+    <text class='left' bindtap='back'></text>
+    <text class='header-tittle'>{{title}}</text>
+  </view>

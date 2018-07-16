@@ -1,9 +1,7 @@
 //index.js
 //获取应用实例
-const app = getApp()
 Page({
   data: {
-    statusBarHeight: app.globalData.statusBarHeight,
     party: {
       name: '',
       url: '',
@@ -54,11 +52,6 @@ Page({
     //   }
     // })
   },
-  back: function (e) {
-    wx.navigateBack({
-
-    })
-  },
   fieldChange: function (e) {
     let fieldType = e.currentTarget.dataset.fieldtype
     let value = e.detail.detail.value
@@ -67,6 +60,9 @@ Page({
     })
   },
   onLoad: function (params) {
+    console.log(111);
+    console.log(params);
+    console.log(111);
     this.setData({
       party: params.party ? Object.assign({}, this.data.party, JSON.parse(params.party)) : this.data.party
     })
