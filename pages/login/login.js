@@ -65,12 +65,15 @@ Page({
   
   },
   onGotUserInfo: function (e) {
-    wx.redirectTo({
-      url: '/pages/shopPartyList/index',
-    })
-    console.log('onGotUserInfo')
+    console.log('eeeeeee')
     console.log(e)
-    console.log('onGotUserInfo')
+    console.log('eeeeeee')
+    app.Http.login(function(){
+      app.updateBottomNavRouter({name:'shopParty'});
+      wx.redirectTo({
+        url: '/pages/shopPartyList/index'
+      })
+    })
   },
   login: function () {
   }

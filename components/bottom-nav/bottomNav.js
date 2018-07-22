@@ -3,6 +3,7 @@ const app = getApp();
 const bottomNavBehavior = require('../bottom-nav/behaviors.js')
 Component({
   behaviors: [bottomNavBehavior],
+  
   /**
    * 组件的属性列表
    */
@@ -13,25 +14,23 @@ Component({
     }
   },
 
-  /**
-   * 组件的初始数据
-   */
-  data: {
-    showNavMenu: false
-  },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    handleRouterSwitch(event) {
-      console.log(1111221);
-      let path = event.currentTarget.dataset.path
-      wx.navigateTo({
+    handleRouterSwitch(event) {event.currentTarget.dataset.router
+      let router = event.currentTarget.dataset.router
+      let path = router.pagePath
+      app.updateBottomNavRouter(router)
+      wx.redirectTo({
         url: `/${path}`,
         success: function () {
           // 修改全局变量的状态
           // app.setRouterStatus(path)
+        },
+        fail:res =>{
+          console.log(res)
         }
       })
     },

@@ -20,7 +20,7 @@
           </view>
         </view>
         <!-- <button session-from="{{party.background}}" type='primary' open-type='contact' class='send-message-btn'>发送消息</button> -->
-        <button bindtap='scanCode' type='primary' class='send-message-btn'>发送消息</button>
+        <!-- <button bindtap='scanCode' type='primary' class='send-message-btn'>发送消息</button> -->
       </view>
     </block>
   </scroll-view>

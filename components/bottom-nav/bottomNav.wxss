@@ -1,4 +1,4 @@
-@import '/assets/common/iconfont.wxss';
+@import '/assets/iconfont/iconfont.wxss';
 
 .flex-v-h-c {
   display: flex;
@@ -152,20 +152,13 @@
   transition-delay: 0.12s;
   transform: rotate(585deg);
 }
-
-.icon-scan::before {
-  content: '\e689';
+.bottom-nav-icon{
+  font-size: 52rpx;
 }
-
-.icon-copy::before {
-  content: '\e706';
+.bottom-nav-icon.active{
+  background-color: #333643;
+  color: #ffffff;
 }
-
-.icon-edit::before {
-  content: '\e649';
-}
-
-.icon-add::before {
+.icon-add{
   font-size: 72rpx;
-  content: '\e767';
 }

@@ -2,12 +2,14 @@ const app = getApp();
 module.exports = Behavior({
   data: {
     isShow: true,
-    routers: []
+    routers: [],
+    showNavMenu: false,
+    currBottomNavRouter: {}
   },
   ready() {
-    console.log(app.globalData.bottomNavConfig)
     this.setData({
-      routers: app.globalData.bottomNavConfig.list
+      routers: app.globalData.bottomNavConfig.list,
+      currBottomNavRouter: app.globalData.currBottomNavPage
     })
   }
 })

@@ -55,9 +55,13 @@ App({
       }
     })
   },
+  updateBottomNavRouter: function(router){
+    this.globalData.currBottomNavPage = router;
+  },
   globalData: {
     userInfo: null,
     statusBarHeight: 0,
+    currBottomNavPage:"",
     bottomNavConfig: {
       color: "#333",
       selectedColor: "#fdb975",
@@ -66,8 +70,8 @@ App({
         {
           "pagePath": "pages/userPartyList/index",
           "text": "商户",
-          "iconPath": "/assets/tab-icon/home_fill_light.png",
-          "selectedIconPath": "/assets/tab-icon/home_light.png"
+          "icon": "dianpu",
+          "name": "shopParty"
         },
         {
           "pagePath": "",
@@ -77,8 +81,8 @@ App({
         {
           "pagePath": "pages/userPartyList/index",
           "text": "我的",
-          "iconPath": "/assets/tab-icon/round_list_light.png",
-          "selectedIconPath": "/assets/tab-icon/round_menu_light.png"
+          "name": "userParty",
+          "icon": "yonghu"
         }
       ]
     }

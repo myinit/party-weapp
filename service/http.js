@@ -4,7 +4,7 @@ var app = getApp();
 import Constants from '../utils/constants.js'
 
 //本地测试域名
-var root = 'http://localhost:7001/';
+var root = 'https://party.aitboy.cn/';
 
 function buildParams(data = {}) {
   var app = getApp();
@@ -31,7 +31,7 @@ function request(config, noLogin) {
     header: header,
     success: (res) => {
       var info = res.data || {}
-      if (info.errorCode === 0) {
+      if (info.code === 0) {
         var success = config.success
         return typeof success === "function" && success(info.data || null, info.extendInfo);
       } else if (info.errorCode === 100) {
@@ -47,11 +47,9 @@ function request(config, noLogin) {
         if (typeof fail === "function") {
           fail(info);
         } else {
-          console.log(info);
-          console.log(Constants);
           wx.showModal({
             title: '提示',
-            content: info || Constants.serviceErrorTip,
+            content: info.info,
             showCancel: false
           })
         }
@@ -78,16 +76,21 @@ function login(cb) {
   wx.setStorageSync('peyton_logintoken', '');
   wx.login({
     success: (res) => {
+      console.log(res)
+      console.log(res)
+      console.log(res)
       var code = res.code;
       if (code) {
         params.code = code;
 
         request({
           type: 'POST',
-          url: 'user-login',
+          url: 'user',
           data: params,
           success: (res1) => {
+            console.log(11111)
             console.log(res1)
+            console.log(11111)
             wx.setStorageSync('peyton_logintoken', res1);
             return typeof cb === "function" && cb();
           }

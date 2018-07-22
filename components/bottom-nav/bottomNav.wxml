@@ -24,11 +24,10 @@
           </view>
         </view>
       </view>
-      <!-- <image class='bottom-nav-item-icon' src='{{item.active ? item.selectedIconPath : item.iconPath}}'></image> -->
     </view>
-    <view bindtap='handleRouterSwitch' wx:else wx:key='{{item.pagePath}}' data-path='{{item.pagePath}}' class="bottom-nav-item">
-      <image class='bottom-nav-item-icon' src='{{item.active ? item.selectedIconPath : item.iconPath}}'></image>
-      <view class='bottom-nav-item-title'>{{item.text}}</view>
+    <view bindtap='handleRouterSwitch' data-router='{{item}}' wx:else wx:key='{{item.pagePath}}' class="bottom-nav-item">
+      <text class='{{"iconfont bottom-nav-icon "+(currBottomNavRouter.name === item.name ? "icon-"+item.icon+"":"icon-"+item.icon+"-xianxing")}}'></text>
+      <text class='bottom-nav-item-title'>{{item.text}}</text>
     </view>
   </block>
 </view>
