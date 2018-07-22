@@ -13,6 +13,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (wx.getStorageSync('peyton_logintoken')) {
+      wx.redirectTo({
+        url: '/pages/shopPartyList/index',
+        success: res => {
+        }
+      })
+    }
     console.log(app)
   },
 
@@ -65,10 +72,7 @@ Page({
   
   },
   onGotUserInfo: function (e) {
-    console.log('eeeeeee')
-    console.log(e)
-    console.log('eeeeeee')
-    app.Http.login(function(){
+    app.Http.login(e.detail.userInfo,() => {
       app.updateBottomNavRouter({name:'shopParty'});
       wx.redirectTo({
         url: '/pages/shopPartyList/index'

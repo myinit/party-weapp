@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+const app = getApp()
 Page({
   data: {
     party: {
@@ -37,21 +38,6 @@ Page({
       },
     ]
   },
-  saveParty: function (e) {
-    let party = this.data.party
-    console.log(party);
-    // wx.request({
-    //   url: 'party.aitboy.cn', //仅为示例，并非真实的接口地址
-    //   method: 'POST',
-    //   data: party,
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success: function (res) {
-    //     console.log(res.data)
-    //   }
-    // })
-  },
   fieldChange: function (e) {
     let fieldType = e.currentTarget.dataset.fieldtype
     let value = e.detail.detail.value
@@ -59,10 +45,24 @@ Page({
       party: Object.assign({}, this.data.party, { [fieldType]: value })
     })
   },
+  saveParty: function(party){
+    app.Http.request({
+      url: '/party',
+      data: this.data.party,
+      type: 'POST',
+      success: res => {
+        console.log('sucess')
+        console.log(res)
+        console.log('sucess')
+      },
+      fail: res => {
+        console.log('error')
+        console.log(res)
+        console.log('error')
+      }
+    })
+  },
   onLoad: function (params) {
-    console.log(111);
-    console.log(params);
-    console.log(111);
     this.setData({
       party: params.party ? Object.assign({}, this.data.party, JSON.parse(params.party)) : this.data.party
     })

@@ -15,13 +15,31 @@ function buildParams(data = {}) {
     userIdentity: Constants.USER_IDENTITY,
     merchantUuid: Constants.MERCHANT_UUID,
     nickName: userInfo ? userInfo.nickName : '',
-  }) ;
+  });
 }
-
+function userLogin(code, cb) {
+  wx.setStorageSync('peyton_logintoken', '');
+  console.log(code)
+  request({
+    type: 'POST',
+    url: 'user-login',
+    data: { code: code },
+    success: (requestSuccessRes) => {
+      wx.setStorageSync('peyton_logintoken', requestSuccessRes.open_id);
+      return typeof cb === "function" && cb();
+    },
+    fail: (requestFailRes) => {
+      wx.showModal({
+        title: '重新登录失败',
+        content: requestFailRes.info,
+        showCancel: false
+      })
+    }
+  })
+}
 function request(config, noLogin) {
   var logintoken = wx.getStorageSync('peyton_logintoken');
   var header = logintoken ? { 'content-type': 'application/json', 'logintoken': logintoken } : { 'content-type': 'application/json' };
-
   if (!config.notLoading) wx.showLoading({ title: '加载中...' })
 
   wx.request({
@@ -34,10 +52,10 @@ function request(config, noLogin) {
       if (info.code === 0) {
         var success = config.success
         return typeof success === "function" && success(info.data || null, info.extendInfo);
-      } else if (info.errorCode === 100) {
+      } else if (info.code === 3004) {
         //未登录或过期
         if (!noLogin) {
-          login(() => {
+          userLogin(() => {
             request(config, true)
           })
         }
@@ -70,15 +88,13 @@ function request(config, noLogin) {
   })
 }
 
-function login(cb) {
-  var params = buildParams();
-
+function login(data, cb) {
+  let params = {}
+  params.wxuser_info = data || ''
   wx.setStorageSync('peyton_logintoken', '');
   wx.login({
     success: (res) => {
-      console.log(res)
-      console.log(res)
-      console.log(res)
+      console.log(res);
       var code = res.code;
       if (code) {
         params.code = code;
@@ -88,20 +104,25 @@ function login(cb) {
           url: 'user',
           data: params,
           success: (res1) => {
-            console.log(11111)
-            console.log(res1)
-            console.log(11111)
-            wx.setStorageSync('peyton_logintoken', res1);
+            wx.setStorageSync('peyton_logintoken', res1.open_id);
+            userLogin(code);
             return typeof cb === "function" && cb();
           }
         })
       } else {
         wx.showModal({
           title: '获取用户登录态失败',
-          content: 'res.errMsg',
+          content: res.errMsg,
           showCancel: false
         })
       }
+    },
+    fail: (res) => {
+      wx.showModal({
+        title: '获取用户微信登录态失败',
+        content: res,
+        showCancel: false
+      })
     }
   });
 }
