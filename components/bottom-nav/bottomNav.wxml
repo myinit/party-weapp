@@ -25,7 +25,7 @@
         </view>
       </view>
     </view>
-    <view bindtap='handleRouterSwitch' data-router='{{item}}' wx:else wx:key='{{item.pagePath}}' class="bottom-nav-item">
+    <view bindtap='handleRouterSwitch' data-router='{{item.name}}' wx:else wx:key='{{item.pagePath}}' class="bottom-nav-item">
       <text class='{{"iconfont bottom-nav-icon "+(currBottomNavRouter.name === item.name ? "icon-"+item.icon+"":"icon-"+item.icon+"-xianxing")}}'></text>
       <text class='bottom-nav-item-title'>{{item.text}}</text>
     </view>

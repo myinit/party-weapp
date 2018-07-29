@@ -4,7 +4,7 @@
     <block wx:for="{{list}}" wx:for-item="party" wx:key="index">
       <view class='party-card'>
         <view class='thumb'>
-          <image src='{{party.background}}'></image>
+          <image src='{{background}}'></image>
           <view class='tip'>
             <text class='party-name ellipsis'>{{party.partyName}}</text>
             <text class='left-time ellipsis'>剩{{party.remainTime}}</text>

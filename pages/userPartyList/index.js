@@ -6,32 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [{
-      shopName: '海底捞',
-      partyName: '周末半价抢鲜购',
-      saveTime: '2018-06-07',
-      endTime: '2018-08-31',
-      remainTime: '3天12小时',
-      addr: '中潭路地铁站',
-      background: 'http://img.zcool.cn/community/01989f58ad6b9ba801219c779368cd.jpg'
-    }, {
-      shopName: '海底捞',
-      partyName: '周末半价抢鲜购',
-      saveTime: '2018-06-07',
-      endTime: '2018-08-31',
-      addr: '中潭路地铁站',
-      remainTime: '3天12小时',
-      background: 'http://img.zcool.cn/community/01989f58ad6b9ba801219c779368cd.jpg'
-    }]
+    lastParty:'',
+    pageSize: 6,
+    background: 'http://img.zcool.cn/community/01989f58ad6b9ba801219c779368cd.jpg',
+    list: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.updateBottomNavRouter({
-      name: 'shopParty'
-    })
+    this.refresh()
   },
 
   /**
@@ -40,13 +25,43 @@ Page({
   onReady: function () {
 
   },
-
-  scanCode: function () {
-    wx.scanCode({
-      success: (res) => {
-        wx.showToast({
-          title: res.result,
+  refresh: function () {
+    this.getPartyList(this.data.pageSize,'', result => {
+      let list = result.res
+      if (list && list.length > 0) {
+        this.setData({
+          list: list,
+          lastParty: list[list.length - 1]
         })
+      }
+    })
+   },
+  loadMore:function(){
+    let oldList = this.data.list
+    this.getPartyList(this.data.pageSize, this.data.lastParty._id, result => {
+      let list = result.res
+      if (list && list.length>0) {
+        this.setData({
+          list: oldList.concat(list),
+          lastParty: list[list.length - 1]
+        })
+      }
+    })
+  },
+  getPartyList:function(pageSize, lastId, cb){
+    app.Http.request({
+      url: 'party',
+      type: 'GET',
+      data: {
+        list_type: 0,
+        page_size: pageSize || 1,
+        last_party_id: lastId || '',
+      },
+      success: res => {
+        console.log('list')
+        console.log(res)
+        console.log('list')
+        cb && cb(res)
       }
     })
   },

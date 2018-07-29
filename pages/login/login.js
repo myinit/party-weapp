@@ -72,7 +72,7 @@ Page({
   
   },
   onGotUserInfo: function (e) {
-    app.Http.login(e.detail.userInfo,() => {
+    app.Http.login(e.detail.userInfo,res => {
       app.updateBottomNavRouter({name:'shopParty'});
       wx.redirectTo({
         url: '/pages/shopPartyList/index'

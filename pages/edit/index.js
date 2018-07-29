@@ -9,11 +9,10 @@ Page({
       mark: '',
       tag: '',
     },
-    fieldList: [
-      {
+    fieldList: [{
         name: '地址',
         type: 'url',
-        placeholder:'保存的地址信息'
+        placeholder: '保存的地址信息'
       },
       {
         name: '标题',
@@ -38,31 +37,32 @@ Page({
       },
     ]
   },
-  fieldChange: function (e) {
+  fieldChange: function(e) {
     let fieldType = e.currentTarget.dataset.fieldtype
     let value = e.detail.detail.value
     this.setData({
-      party: Object.assign({}, this.data.party, { [fieldType]: value })
+      party: Object.assign({}, this.data.party, {
+        [fieldType]: value
+      })
     })
   },
-  saveParty: function(party){
+  saveParty: function(party) {
     app.Http.request({
-      url: '/party',
+      url: 'party',
       data: this.data.party,
       type: 'POST',
       success: res => {
-        console.log('sucess')
-        console.log(res)
-        console.log('sucess')
+        let routerBackType = res.list_type
+        if (routerBackType === -1) {
+          app.redirectTo('shopParty')
+        } else {
+          app.redirectTo('userParty')
+        }
       },
-      fail: res => {
-        console.log('error')
-        console.log(res)
-        console.log('error')
-      }
+      fail: res => {}
     })
   },
-  onLoad: function (params) {
+  onLoad: function(params) {
     this.setData({
       party: params.party ? Object.assign({}, this.data.party, JSON.parse(params.party)) : this.data.party
     })

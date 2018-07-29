@@ -19,20 +19,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    handleRouterSwitch(event) {event.currentTarget.dataset.router
+    handleRouterSwitch(event) {
       let router = event.currentTarget.dataset.router
-      let path = router.pagePath
-      app.updateBottomNavRouter(router)
-      wx.redirectTo({
-        url: `/${path}`,
-        success: function () {
-          // 修改全局变量的状态
-          // app.setRouterStatus(path)
-        },
-        fail:res =>{
-          console.log(res)
-        }
-      })
+      app.redirectTo(router)
     },
     targgleNavMenu: function() {
       this.setData({

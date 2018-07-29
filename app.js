@@ -55,8 +55,26 @@ App({
       }
     })
   },
-  updateBottomNavRouter: function(router){
+  updateBottomNavRouter: function (router) {
     this.globalData.currBottomNavPage = router;
+  },
+  redirectTo: function(routerName) {
+    let redirectToRouter = '' 
+    this.globalData.bottomNavConfig.list.map(item => {
+      if(item.name === routerName){
+        redirectToRouter = item
+      }
+    })
+    this.updateBottomNavRouter(redirectToRouter)
+
+    wx.redirectTo({
+      url: `/${redirectToRouter.pagePath}`,
+      fail: res => {
+        wx.showModal({
+          content: res,
+        })
+      }
+    })
   },
   globalData: {
     userInfo: null,

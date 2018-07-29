@@ -176,8 +176,6 @@ var Storage = {
     }
   },
 }
-
-
 module.exports = {
   Format: Format,
   Check: Check,

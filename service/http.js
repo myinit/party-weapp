@@ -17,22 +17,25 @@ function buildParams(data = {}) {
     nickName: userInfo ? userInfo.nickName : '',
   });
 }
-function userLogin(code, cb) {
+function userLogin(cb) {
   wx.setStorageSync('peyton_logintoken', '');
-  console.log(code)
-  request({
-    type: 'POST',
-    url: 'user-login',
-    data: { code: code },
-    success: (requestSuccessRes) => {
-      wx.setStorageSync('peyton_logintoken', requestSuccessRes.open_id);
-      return typeof cb === "function" && cb();
-    },
-    fail: (requestFailRes) => {
-      wx.showModal({
-        title: '重新登录失败',
-        content: requestFailRes.info,
-        showCancel: false
+  wx.login({
+    success: (res) => {
+      request({
+        type: 'POST',
+        url: 'user-login',
+        data: { code: res.code },
+        success: (requestSuccessRes) => {
+          wx.setStorageSync('peyton_logintoken', requestSuccessRes.login_token);
+          return typeof cb === "function" && cb();
+        },
+        fail: (requestFailRes) => {
+          wx.showModal({
+            title: '重新登录失败',
+            content: requestFailRes.info,
+            showCancel: false
+          })
+        }
       })
     }
   })
@@ -98,14 +101,13 @@ function login(data, cb) {
       var code = res.code;
       if (code) {
         params.code = code;
-
+        params.need_login = 'y';
         request({
           type: 'POST',
           url: 'user',
           data: params,
           success: (res1) => {
-            wx.setStorageSync('peyton_logintoken', res1.open_id);
-            userLogin(code);
+            wx.setStorageSync('peyton_logintoken', res1.login_token);
             return typeof cb === "function" && cb();
           }
         })
