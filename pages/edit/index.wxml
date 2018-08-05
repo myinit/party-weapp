@@ -3,7 +3,10 @@
   <zan-panel>
     <zan-cell-group>
       <block wx:for="{{fieldList}}" wx:key="{{index}}">
-        <zan-field value="{{party[item.type]}}" bind:change="fieldChange" data-fieldtype="{{item.type}}" title="{{item.name}}" mode="normal" right="true"></zan-field>
+        <zan-cell wx:if="{{item.type === 'date'}}" title="{{item.name}}">
+          <zan-date-picker date="{{nowDate}}" data-type="{{item.type}}" data-field="{{item.field}}" not-use="{{['seconds']}}" slot="footer" bindchange="fieldChange" placeholder="请选择时间" format="YYYY-MM-DD HH:mm:ss" />
+        </zan-cell>
+        <zan-field wx:else value="{{party[item.field]}}" bind:change="fieldChange" data-field="{{item.field}}" data-type="{{item.type}}" title="{{item.name}}" mode="normal" right="true"></zan-field>
       </block>
     </zan-cell-group>
   </zan-panel>

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "zan-icon": "/modules/zanui/icon/index",
-    "bottom-nav": "/components/bottom-nav/bottomNav"
+    "bottom-nav": "/components/bottom-nav/bottomNav",
+    "party-card":"/components/party-card/index"
   }
 }

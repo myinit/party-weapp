@@ -5,11 +5,3 @@
   padding: 30rpx 0;
   min-height: 100vh;
 }
-.send-message-btn{
-  position: absolute;
-  top: 20rpx;
-  right: 20rpx;
-  font-size: 22rpx;
-}
-page {
-}

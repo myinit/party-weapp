@@ -1,8 +1,10 @@
 //index.js
 //获取应用实例
 const app = getApp()
+import Util from '../../utils/util.js'
 Page({
   data: {
+    nowDate: Util.DateFormat(new Date().getTime(), 'YYYY-MM-DD HH:mm:ss'),
     party: {
       name: '',
       url: '',
@@ -11,38 +13,41 @@ Page({
     },
     fieldList: [{
         name: '地址',
-        type: 'url',
+        field: 'url',
         placeholder: '保存的地址信息'
       },
       {
         name: '标题',
-        type: 'name',
+        field: 'name',
         placeholder: '标题'
       },
       {
         name: '备注',
-        type: 'mark'
+        field: 'mark'
       },
       {
         name: '开始',
-        type: 'start'
+        field: 'start',
+        type: 'date'
       },
       {
         name: '结束',
-        type: 'end'
+        field: 'end',
+        type: 'date'
       },
       {
         name: '标签',
-        type: 'tag'
+        field: 'tag'
       },
     ]
   },
-  fieldChange: function(e) {
-    let fieldType = e.currentTarget.dataset.fieldtype
-    let value = e.detail.detail.value
+  fieldChange: function (e) {
+    let field = e.currentTarget.dataset.field
+    let fieldType = e.currentTarget.dataset.type
+    let value = fieldType === 'date' ? this.formatArrToTime(e.detail.value) : e.detail.detail.value
     this.setData({
       party: Object.assign({}, this.data.party, {
-        [fieldType]: value
+        [field]: value
       })
     })
   },
@@ -61,6 +66,10 @@ Page({
       },
       fail: res => {}
     })
+  },
+  formatArrToTime: function (arr) {
+    let arrTime = arr.splice(3,3)
+    return new Date(arr.join('-') + ' ' + arrTime.join(':')).getTime()
   },
   onLoad: function(params) {
     this.setData({

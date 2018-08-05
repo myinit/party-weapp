@@ -1,21 +1,26 @@
 // pages/list/list.js
+import Util from '../../utils/util.js'
 const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     lastParty:'',
     pageSize: 6,
-    background: 'http://img.zcool.cn/community/01989f58ad6b9ba801219c779368cd.jpg',
-    list: ''
+    list: '',
+    total:0,
+    scrollY: false,
+    isScrollViewTap: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    app.updateBottomNavRouter({
+      name: 'userParty'
+    })
     this.refresh()
   },
 
@@ -33,17 +38,21 @@ Page({
           list: list,
           lastParty: list[list.length - 1]
         })
+        wx.stopPullDownRefresh()
       }
     })
    },
   loadMore:function(){
-    let oldList = this.data.list
-    this.getPartyList(this.data.pageSize, this.data.lastParty._id, result => {
-      let list = result.res
-      if (list && list.length>0) {
+    let { list, total, pageSize, lastParty} = this.data
+    if (list.length >= total){
+      return false
+    }
+    this.getPartyList(pageSize, lastParty._id, result => {
+      let resultList = result.res
+      if (resultList && resultList.length>0) {
         this.setData({
-          list: oldList.concat(list),
-          lastParty: list[list.length - 1]
+          list: list.concat(resultList),
+          lastParty: resultList[resultList.length - 1]
         })
       }
     })
@@ -58,18 +67,15 @@ Page({
         last_party_id: lastId || '',
       },
       success: res => {
-        console.log('list')
-        console.log(res)
-        console.log('list')
+        this.setData({
+          total: res.count
+        })
+        res.res.map(item => {
+          item.regdate = Util.DateFormat(item.regdate, 'YYYY-MM-DD HH:mm')
+          return item
+        })
         cb && cb(res)
       }
-    })
-  },
-
-  previewImage: function (e) {
-    wx.previewImage({
-      urls: ['http://simg01.gaodunwangxiao.com/uploadimgs/tmp/upload/201806/10/be944_20180610110616.png']
-      // 需要预览的图片http链接  使用split把字符串转数组。不然会报错  
     })
   },
   /**
@@ -97,14 +103,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.refresh()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.loadMore()
   },
 
   /**
@@ -112,5 +118,24 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onScrollEvent: function (e) {
+    // this.setData({
+    //   scrollY: e.detail.scrollY
+    // })
+  },
+  onViewtTouchStart: function (e) {
+    this.setData({
+      isScrollViewTap: true
+    })
+  },
+  onViewtTouchEnd: function () {
+    this.setData({
+      isScrollViewTap: false
+    })
   }
+  /**
+   * 列表元素滑动相关
+   */
 })

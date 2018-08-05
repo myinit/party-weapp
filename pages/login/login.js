@@ -20,7 +20,6 @@ Page({
         }
       })
     }
-    console.log(app)
   },
 
   /**

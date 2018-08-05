@@ -21,6 +21,7 @@ Component({
   methods: {
     handleRouterSwitch(event) {
       let router = event.currentTarget.dataset.router
+      console.log(router)
       app.redirectTo(router)
     },
     targgleNavMenu: function() {

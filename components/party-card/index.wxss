@@ -41,24 +41,18 @@
   color: #ffffff;
   box-sizing: border-box;
 }
-.party-card-thumb>.tip>.left-time{
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10rpx);
-  padding-left: 20rpx;
-  text-align: center;
-  width: 230rpx;
-  height: 40rpx;
-  line-height: 40rpx;
-  border-top-left-radius:20rpx;
-  border-bottom-left-radius: 20rpx;
-}
 .party-card-menu > .menu-item {
   flex: 1;
   width: 30vw;
-  background-color: #e8e8e8;
+  background-color: #e0e0e0;
   border-bottom: 1rpx solid #fefefe;
   color: #ffffff;
+  border-radius: 0;
   font-size: 32rpx;
+}
+.party-card-menu > .menu-item:after{
+  border: none;
+  border-radius: 0;
 }
 .party-card-menu > .menu-item:last-child{
   border-bottom: none;
@@ -71,4 +65,54 @@
 }
 .party-card-menu > .menu-item.delete{
   background-color: rgb(255, 58, 50);
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+.flex-v-h-c {
+  align-items: center;
+  justify-content: center;
+}
+.flex-v-c {
+  justify-content: center;
+}
+.flex-h-c {
+  align-items: center;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+.left-time {
+  position: absolute;
+  right: 0;
+  bottom: 60rpx;
+  background-color: rgba(0,0,0,0.6);
+  padding-left: 20rpx;
+  padding-right: 10rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #fafafa;
+  border-top-left-radius: 15rpx;
+  border-bottom-left-radius: 15rpx;
+}
+.party-name{
+  margin: 30rpx 0 0 30rpx;
+  font-size: 52rpx;
+  color: #333333;
+}
+.party-card-title{
+  justify-content: space-between;
+  padding: 0 20rpx;
+  font-size: 32rpx;
 }

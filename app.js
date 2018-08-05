@@ -8,10 +8,11 @@ const Count = Util.Count;//计算相关方法
 const Format = Util.Format;//format相关方法
 const Storage = Util.Storage;//数据缓存
 import regeneratorRuntime from 'utils/regeneratorRuntime.js'
+import { saveUrlToClip, haveUrlInClip } from '/utils/urlHandle.js'
 App({
   onLaunch: function () {
     this.getSystemInfo();
-    // this.getUserInfo();
+    haveUrlInClip();
   },
   //引入
   Constants: Constants,
@@ -86,7 +87,7 @@ App({
       backgroundColor: "#fff",
       list: [
         {
-          "pagePath": "pages/userPartyList/index",
+          "pagePath": "pages/shopPartyList/index",
           "text": "商户",
           "icon": "dianpu",
           "name": "shopParty"

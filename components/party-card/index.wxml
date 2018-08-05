@@ -1,0 +1,30 @@
+<!--components/party-card/index.wxml-->
+<view class='party-card '>
+  <view class='flex-row' animation='{{wrapAnimation}}'>
+    <view class='party-card-inner flex-row' animation='{{animation}}' id='{{index}}' bindtouchstart='onPartyTouchStart' bindtouchmove='onPartyTouchMove' bindtouchend='onPartyTouchEnd'>
+      <view class='party-card-thumb' id="{{index}}" style='{{"background:url("+background+");background-size:100% 100%;"}}'>
+        <view class='party-name ellipsis'>
+          <text>{{party.title}}</text>
+        </view>
+        <view class='left-time ellipsis'>
+          <text>截止{{party.regdate}}</text>
+        </view>
+      </view>
+      <view class='party-card-menu flex-col'>
+        <button open-type='share' bindtap='shareParty' data-url='{{party.url}}' class='menu-item flex-row flex-v-h-c share'>分享</button>
+        <view bindtap='copyParty' data-url='{{party.url}}' class='menu-item flex-row flex-v-h-c copy'>复制</view>
+        <button send-message-title='asds' session-from='{{isShopParty?-1:0}}:{{party._id}}' open-type='contact' bindtap='sendParty' data-url='{{party.url}}' class='menu-item flex-row flex-v-h-c send'>发送</button>
+        <!-- <view bindtap='deleteParty' data-url='{{party.url}}' class='menu-item flex-row flex-v-h-c delete'>删除</view> -->
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{isShopParty}}" class='party-card-title flex-row'>
+    <view>
+      <zan-icon type="shop-collect" class='shop-icon'></zan-icon>
+      <text>{{party.shopName}}</text>
+    </view>
+    <view>
+      <text>{{party.address}}</text>
+    </view>
+  </view>
+</view>

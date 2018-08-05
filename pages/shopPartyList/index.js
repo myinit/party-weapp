@@ -1,28 +1,17 @@
 // pages/list/list.js
+import Util from '../../utils/util.js'
 const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    list: [{
-      shopName: '海底捞',
-      partyName: '周末半价抢鲜购',
-      saveTime: '2018-06-07',
-      endTime: '2018-08-31',
-      remainTime: '3天12小时',
-      addr: '中潭路地铁站',
-      background: 'http://img.zcool.cn/community/01989f58ad6b9ba801219c779368cd.jpg'
-    }, {
-      shopName: '海底捞',
-      partyName: '周末半价抢鲜购',
-      saveTime: '2018-06-07',
-      endTime: '2018-08-31',
-      addr: '中潭路地铁站',
-      remainTime: '3天12小时',
-      background: 'http://img.zcool.cn/community/01989f58ad6b9ba801219c779368cd.jpg'
-    }]
+    lastParty: '',
+    pageSize: 6,
+    list: '',
+    total: 0,
+    scrollY: false,
+    isScrollViewTap: false
   },
 
   /**
@@ -32,6 +21,7 @@ Page({
     app.updateBottomNavRouter({
       name: 'shopParty'
     })
+    this.refresh()
   },
 
   /**
@@ -40,27 +30,59 @@ Page({
   onReady: function () {
 
   },
-
-  scanCode: function () {
-    wx.scanCode({
-      success: (res) => {
-        wx.showToast({
-          title: res.result,
+  refresh: function () {
+    this.getPartyList(this.data.pageSize, '', result => {
+      let list = result.res
+      if (list && list.length > 0) {
+        this.setData({
+          list: list,
+          lastParty: list[list.length - 1]
+        })
+        wx.stopPullDownRefresh()
+      }
+    })
+  },
+  loadMore: function () {
+    let { list, total, pageSize, lastParty } = this.data
+    if (list.length >= total) {
+      return false
+    }
+    this.getPartyList(pageSize, lastParty._id, result => {
+      let resultList = result.res
+      if (resultList && resultList.length > 0) {
+        this.setData({
+          list: list.concat(resultList),
+          lastParty: resultList[resultList.length - 1]
         })
       }
     })
   },
-
-  previewImage: function (e) {
-    wx.previewImage({
-      urls: ['http://simg01.gaodunwangxiao.com/uploadimgs/tmp/upload/201806/10/be944_20180610110616.png']
-      // 需要预览的图片http链接  使用split把字符串转数组。不然会报错  
+  getPartyList: function (pageSize, lastId, cb) {
+    app.Http.request({
+      url: 'shop-party-admin',
+      type: 'GET',
+      data: {
+        list_type: 0,
+        page_size: pageSize || 1,
+        last_party_id: lastId || '',
+      },
+      success: res => {
+        this.setData({
+          total: res.count
+        })
+        res.res.map(item => {
+          item.regdate = Util.DateFormat(item.regdate, 'YYYY-MM-DD HH:mm')
+          return item
+        })
+        cb && cb(res)
+      }
     })
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
   },
 
   /**
@@ -81,14 +103,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.refresh()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.loadMore()
   },
 
   /**
@@ -96,5 +118,24 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onScrollEvent: function (e) {
+    // this.setData({
+    //   scrollY: e.detail.scrollY
+    // })
+  },
+  onViewtTouchStart: function (e) {
+    this.setData({
+      isScrollViewTap: true
+    })
+  },
+  onViewtTouchEnd: function () {
+    this.setData({
+      isScrollViewTap: false
+    })
   }
+  /**
+   * 列表元素滑动相关
+   */
 })
