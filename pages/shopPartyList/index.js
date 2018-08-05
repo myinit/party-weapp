@@ -59,10 +59,10 @@ Page({
   },
   getPartyList: function (pageSize, lastId, cb) {
     app.Http.request({
-      url: 'shop-party-admin',
+      url: 'party',
       type: 'GET',
       data: {
-        list_type: 0,
+        list_type: -1,
         page_size: pageSize || 1,
         last_party_id: lastId || '',
       },
